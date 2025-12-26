@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouterLink } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -10,13 +10,23 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/auth',
+      name: 'authentication',
+      component: () => import('@/components/authentication/Auth.vue'),
+      redirect: { name: 'signin' },
+      children: [
+        { path: 'signin', name: 'signin', component: () => import('@/components/authentication/SignIn.vue') },
+        { path: 'signup', name: 'signup', component: () => import('@/components/authentication/SignUp.vue') },
+      ],
     },
+    /* {
+       path: '/about',
+       name: 'about',
+       // route level code-splitting
+       // this generates a separate chunk (About.[hash].js) for this route
+       // which is lazy-loaded when the route is visited.
+       component: () => import('../views/AboutView.vue'),
+     }, */
   ],
 })
 

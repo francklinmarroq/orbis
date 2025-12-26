@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import type { User } from '@supabase/supabase-js'
+import { onMounted, ref } from 'vue'
+import { supabase } from '@/lib/supabaseClient'
+
+const username = ref<User | null>(null)
+
+onMounted(async () => {
+  const { data } = await supabase.auth.getUser()
+  if (data.user) {
+    username.value = data.user.user_metadata.display_name
+  }
+})
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    Hello {{ username }}
   </main>
 </template>
