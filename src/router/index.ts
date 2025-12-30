@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouterLink } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,13 +7,21 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: DashboardView,
+      meta: { layout: 'DefaultLayout' },
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/Settings.vue'),
+      meta: { layout: 'DefaultLayout' },
     },
     {
       path: '/auth',
       name: 'authentication',
-      component: () => import('@/components/authentication/Auth.vue'),
+      component: () => import('@/views/auth/AuthView.vue'),
       redirect: { name: 'signin' },
+      meta: { layout: 'AuthLayout' },
       children: [
         { path: 'signin', name: 'signin', component: () => import('@/components/authentication/SignIn.vue') },
         { path: 'signup', name: 'signup', component: () => import('@/components/authentication/SignUp.vue') },

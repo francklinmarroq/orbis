@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { User } from '@supabase/supabase-js'
 import { onMounted, ref } from 'vue'
+import MenuBar from '@/components/menu/MenuBar.vue'
 import { supabase } from '@/lib/supabaseClient'
 
 const username = ref<User | null>(null)
@@ -14,7 +15,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    Hello {{ username }}
-  </main>
+  hi {{ username }}
 </template>
