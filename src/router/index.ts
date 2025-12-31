@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouterLink } from 'vue-router'
-import DashboardView from '@/views/DashboardView.vue'
+import DashboardView from '@/views/dashboard/DashboardView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,13 +8,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: DashboardView,
-      meta: { layout: 'DefaultLayout' },
     },
     {
       path: '/settings',
       name: 'settings',
-      component: () => import('@/views/Settings.vue'),
-      meta: { layout: 'DefaultLayout' },
+      component: () => import('@/views/settings/Settings.vue'),
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: () => import('@/views/products/ProductsView.vue'),
     },
     {
       path: '/auth',

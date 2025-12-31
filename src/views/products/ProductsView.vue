@@ -1,0 +1,3 @@
+<template>
+  Hello Products
+</template>
